@@ -1,56 +1,83 @@
-# Microsoft Fabric Retail Analytics
+# Retail Analytics with Microsoft Fabric
 
-An end-to-end retail analytics project built with Microsoft Fabric, SQL, PySpark and Power BI.
+End-to-end retail analytics project built with **Microsoft Fabric, Dataflow Gen2, Lakehouse, SQL, PySpark, DAX and Power BI**.
 
-## Project Overview
+The project uses the Brazilian Olist e-commerce dataset to build an analytics workflow from raw data ingestion and transformation through data modeling to an interactive Power BI dashboard.
 
-This project explores Brazilian e-commerce data from Olist and demonstrates an end-to-end analytics workflow in Microsoft Fabric.
-
-The goal was to build a complete analytical solution, from raw data ingestion and transformation to data modeling and an interactive Power BI dashboard.
+![Retail Sales Dashboard](docs/dashboard.png)
 
 ## Architecture
 
-**Source Data → Dataflow Gen2 → Lakehouse → SQL Views → Semantic Model → Power BI**
+The solution follows an end-to-end analytics workflow in Microsoft Fabric.
 
-The solution combines:
+![Microsoft Fabric Architecture](docs/architecture.png)
 
-- **Dataflow Gen2** for data ingestion and transformation
-- **Microsoft Fabric Lakehouse** for centralized data storage
-- **SQL** for data exploration, quality checks and analytical views
-- **PySpark** for creating the date dimension
-- **Semantic modeling and DAX** for business logic and time intelligence
-- **Power BI** for the final analytical dashboard
+**CSV → Dataflow Gen2 → Lakehouse → SQL & PySpark → Semantic Model → Power BI**
+
+## Data Pipeline
+
+**Dataflow Gen2**  
+Raw Olist CSV files are ingested and cleaned before being loaded into the Fabric Lakehouse.
+
+**Lakehouse**  
+Cleaned data is stored as Delta tables and provides the source layer for downstream transformations.
+
+**SQL**  
+SQL views create the analytical fact and dimension structures used by the semantic model. Separate queries are included for initial data exploration and data quality validation.
+
+**PySpark**  
+A reusable date dimension is generated programmatically and persisted as a Delta table for time intelligence.
+
+**Semantic Model**  
+The analytical model connects sales with product, customer, seller and date dimensions. DAX measures provide KPIs, year-over-year comparisons and dynamic formatting used in the report.
+
+![Semantic Model](docs/semantic-model.png)
 
 ## Dashboard
 
-The final report provides an overview of retail performance across:
+The Power BI report provides an overview of retail sales performance, including:
 
-- Revenue
-- Orders
+- Total Revenue
+- Total Orders
 - Average Order Value
 - Items Sold
-- Product Categories
-- Customer Geography
-- Customer Review Scores
+- Year-over-Year performance
+- Top Product Categories
+- Top Customer States
+- Category performance based on revenue, review score and items sold
 
-The dashboard includes year-over-year comparisons, monthly trends and category-level performance analysis.
-
-## Data Modeling
-
-The analytical model follows a star-schema approach with a central sales fact table and dimensions for:
-
-- Products
-- Customers
-- Sellers
-- Date
-
-Review data required additional modeling because reviews are recorded at order level while sales are stored at order-item level.
-
-Reviews were therefore aggregated to the correct grain before being integrated into the analytical model, preventing duplicated review weighting and inflated sales results.
+The category performance view combines commercial performance and customer feedback to identify high-performing and underperforming product categories.
 
 ## Repository Structure
 
 ```text
-sql/          SQL exploration, quality checks and analytical views
-notebooks/    PySpark transformations
-docs/         Architecture, semantic model and dashboard screenshots
+fabric-retail-analytics/
+│
+├── docs/
+│   ├── architecture.png
+│   ├── dashboard.png
+│   └── semantic-model.png
+│
+├── pyspark/
+│   └── create_dim_date.py
+│
+├── sql/
+│   ├── 01_data_exploration.sql
+│   ├── 02_data_quality_checks.sql
+│   ├── 03_order_reviews_view.sql
+│   ├── 04_fact_sales_view.sql
+│   ├── 05_dim_product_view.sql
+│   ├── 06_dim_customer_view.sql
+│   ├── 07_dim_seller_view.sql
+│   └── 08_order_product_reviews_view.sql
+│
+└── README.md
+```
+
+## Tech Stack
+
+**Microsoft Fabric** · **Dataflow Gen2** · **Lakehouse** · **SQL** · **PySpark** · **Power BI** · **DAX**
+
+## Dataset
+
+This project uses the public **Brazilian E-Commerce Public Dataset by Olist**, containing information about orders, customers, products, sellers and customer reviews.
