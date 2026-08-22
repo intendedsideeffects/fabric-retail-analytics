@@ -1,4 +1,4 @@
-# Retail Analytics with Microsoft Fabric
+# Fabric Retail Analytics
 
 End-to-end retail analytics project built with **Microsoft Fabric, Dataflow Gen2, Lakehouse, SQL, PySpark, DAX and Power BI**.
 
@@ -41,17 +41,17 @@ The Power BI report provides an overview of retail sales performance, including:
 - Total Orders
 - Average Order Value
 - Items Sold
-- Year-over-Year performance
+- Year-over-Year Performance
 - Top Product Categories
 - Top Customer States
-- Category performance based on revenue, review score and items sold
+- Category Performance by Revenue, Review Score and Items Sold
 
 The category performance view combines commercial performance and customer feedback to identify high-performing and underperforming product categories.
 
 ## Repository Structure
 
 ```text
-fabric-retail-analytics/
+Fabric-Retail-Analytics/
 │
 ├── docs/
 │   ├── architecture.png
@@ -80,4 +80,4 @@ fabric-retail-analytics/
 
 ## Dataset
 
-This project uses the public **Brazilian E-Commerce Public Dataset by Olist**, containing information about orders, customers, products, sellers and customer reviews.
+This project uses the public **Brazilian E-Commerce Public Dataset by Olist**, containing information about orders, customers, products, sellers and customer reviews.mer reviews.
