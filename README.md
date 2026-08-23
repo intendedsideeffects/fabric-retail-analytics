@@ -10,8 +10,6 @@ The project uses the Brazilian Olist e-commerce dataset to build an analytics wo
 
 The solution follows an end-to-end analytics workflow in Microsoft Fabric.
 
-![Microsoft Fabric Architecture](docs/architecture.png)
-
 **CSV → Dataflow Gen2 → Lakehouse → SQL & PySpark → Semantic Model → Power BI**
 
 ## Data Pipeline
