@@ -1,6 +1,6 @@
 # Fabric Retail Analytics
 
-End-to-end retail analytics project built with **Microsoft Fabric, Dataflow Gen2, Lakehouse, SQL, PySpark, DAX and Power BI**.
+End-to-end retail analytics project built in one day with **Microsoft Fabric, Dataflow Gen2, Lakehouse, SQL, PySpark, DAX and Power BI**.
 
 The project uses the Brazilian Olist e-commerce dataset to build an analytics workflow from raw data ingestion and transformation through data modeling to an interactive Power BI dashboard.
 
